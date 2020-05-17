@@ -8,6 +8,7 @@ class ThemeRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           title: Text("Theme"),
         ),
         body: GridView.builder(
@@ -19,7 +20,7 @@ class ThemeRoute extends StatelessWidget {
             itemBuilder: (context, index) {
               return FlatButton(
                   onPressed: () {
-                    Provider.of<ThemeProvider>(context,listen: false).themeIndex = index;
+                    Provider.of<ThemeProvider>(context,listen: false).clockThemeIndex = index;
                   },
                   child: Text(Global.themes[index].toString()));
             }));

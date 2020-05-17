@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shuaiclock/common/providers.dart';
 
@@ -7,12 +8,14 @@ import 'common/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  
   Global.init().then((e) => runApp(ShuaiClock()));
 }
 
 class ShuaiClock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+  
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<ThemeProvider>(

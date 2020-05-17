@@ -31,7 +31,10 @@ dependencies:
   wakelock: ^0.1.4+1
   provider: ^4.0.5
   shared_preferences: ^0.5.7
+  flutter_screenutil: ^1.1.0
+  google_fonts: ^1.1.0
   
+  analog_clock: ^0.0.4
   slide_digital_clock: ^1.0.0
 
 dev_dependencies:

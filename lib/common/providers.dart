@@ -15,7 +15,7 @@ class ProfileChangeNotifier extends ChangeNotifier {
 }
 
 class ThemeProvider extends ProfileChangeNotifier {
-  ClockTheme get theme => Global.themes[_profile.themeIndex];
+  ClockTheme get clockTheme => Global.themes[_profile.themeIndex];
   
   int get themeIndex => _profile.themeIndex;
 
@@ -23,4 +23,12 @@ class ThemeProvider extends ProfileChangeNotifier {
     Global.profile.themeIndex = themeIndex;
     notifyListeners();
   }
+
+  int get clockThemeIndex => _profile.clockThemeIndex;
+
+  set clockThemeIndex(int clockThemeIndex) {
+    Global.profile.clockThemeIndex = clockThemeIndex;
+    notifyListeners();
+  }
+
 }

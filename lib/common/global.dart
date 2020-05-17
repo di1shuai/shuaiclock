@@ -4,7 +4,10 @@ import 'package:shuaiclock/common/clock_theme.dart';
 import 'package:shuaiclock/models/profile.dart';
 import 'package:wakelock/wakelock.dart';
 
-const _themes = <ClockTheme>[ClockTheme.TURN_PAGE, ClockTheme.DIGITAL];
+const _themes = <ClockTheme>[
+  ClockTheme.DIGITAL,
+  ClockTheme.ANALOG
+];
 
 class Global {
   static SharedPreferences _prefs;
@@ -26,8 +29,8 @@ class Global {
       } catch (e) {
         print(e);
       }
-      print("===== init end ======");
     }
+    print("===== init end ======");
   }
 
   // 持久化Profile信息
