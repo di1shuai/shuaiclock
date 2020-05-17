@@ -54,7 +54,7 @@ class HomeRoute extends StatelessWidget {
     );
 
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
+        // appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
         // drawer: Menu(),
         body: Center(child:
             Consumer<ThemeProvider>(builder: (context, themeProvider, _) {
