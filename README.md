@@ -14,3 +14,24 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+## Build
+
+### Android
+
+### IOS
+
+### Mac
+
+### Windows
+
+1. 
+2.
+
+3. 增加 `go/windows-msi/Dockerfile` 
+
+```
+# RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+# RUN apt-get clean
+```
