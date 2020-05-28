@@ -6,7 +6,7 @@ import 'package:shuaiclock/common/clock_theme.dart';
 import 'package:shuaiclock/models/profile.dart';
 import 'package:wakelock/wakelock.dart';
 
-const _themes = <ClockTheme>[ClockTheme.DIGITAL, ClockTheme.ANALOG];
+const _themes = <ClockTheme>[ClockTheme.DIGITAL, ClockTheme.ANALOG, ClockTheme.ANALOG_SIMPLE];
 
 class Global {
   static SharedPreferences _prefs;

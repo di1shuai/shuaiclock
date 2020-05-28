@@ -1,5 +1,6 @@
 enum ClockTheme{
   TURN_PAGE,
   DIGITAL,
-  ANALOG
+  ANALOG,
+  ANALOG_SIMPLE
 }

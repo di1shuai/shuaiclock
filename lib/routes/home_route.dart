@@ -53,6 +53,23 @@ class HomeRoute extends StatelessWidget {
       datetime: DateTime.now(),
     );
 
+    final analogClockSimple = AnalogClock(
+      decoration: BoxDecoration(
+          border: Border.all(width: 2.0, color: Colors.black),
+          color: Colors.transparent,
+          shape: BoxShape.circle),
+      isLive: true,
+      hourHandColor: Colors.black,
+      minuteHandColor: Colors.black,
+      showSecondHand: false,
+      numberColor: Colors.black87,
+      showNumbers: true,
+      textScaleFactor: 1.4,
+      showTicks: false,
+      showDigitalClock: false,
+      datetime: DateTime.now(),
+    );
+
     return Scaffold(
       // appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       // drawer: Menu(),
@@ -79,6 +96,10 @@ class HomeRoute extends StatelessWidget {
 
               case ClockTheme.ANALOG:
                 clock = analogClock;
+                break;
+
+              case ClockTheme.ANALOG_SIMPLE:
+                clock = analogClockSimple;
                 break;
 
               default:
