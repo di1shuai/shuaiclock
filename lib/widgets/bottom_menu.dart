@@ -11,7 +11,7 @@ class BottomMenu extends StatelessWidget {
       height: 300,
       child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, //横轴三个子widget
+              crossAxisCount: 4, //横轴三个子widget
               childAspectRatio: 1.0 //宽高比为1时，子widget
               ),
           itemCount: Global.themes.length,

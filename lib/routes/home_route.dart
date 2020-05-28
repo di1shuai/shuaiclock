@@ -6,7 +6,6 @@ import 'package:shuaiclock/common/clock_theme.dart';
 import 'package:shuaiclock/common/providers.dart';
 import 'package:shuaiclock/widgets/bottom_menu.dart';
 import 'package:shuaiclock/widgets/clock/turnpage_clock.dart';
-import 'package:shuaiclock/widgets/menu.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -85,7 +84,6 @@ class HomeRoute extends StatelessWidget {
               default:
                 clock = digitalClock;
             }
-
             return clock;
           }),
         ),
