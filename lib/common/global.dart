@@ -6,13 +6,27 @@ import 'package:shuaiclock/common/clock_theme.dart';
 import 'package:shuaiclock/models/profile.dart';
 import 'package:wakelock/wakelock.dart';
 
-const _themes = <ClockTheme>[ClockTheme.DIGITAL, ClockTheme.ANALOG, ClockTheme.ANALOG_SIMPLE];
+const _themes = <Color>[
+  Colors.grey,
+  Colors.yellow,
+  Colors.blue,
+  Colors.orange,
+  Colors.green
+];
+
+const _clockThemes = <ClockTheme>[
+  ClockTheme.DIGITAL,
+  ClockTheme.ANALOG,
+  ClockTheme.ANALOG_SIMPLE
+];
 
 class Global {
   static SharedPreferences _prefs;
-  static Profile profile = Profile(themeIndex: 0,clockThemeIndex: 0);
+  static Profile profile = Profile(themeIndex: 0, clockThemeIndex: 0);
   // 可选的主题列表
-  static List<ClockTheme> get themes => _themes;
+  static List<ClockTheme> get clockThemes => _clockThemes;
+
+  static List<Color> get themes => _themes;
 
   //初始化全局信息，会在APP启动时执行
   static Future init() async {

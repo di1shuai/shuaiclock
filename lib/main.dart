@@ -7,23 +7,30 @@ import 'common/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   Global.init().then((e) => runApp(ShuaiClock()));
 }
 
 class ShuaiClock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<ThemeProvider>(
-            create: (_) => ThemeProvider(),
-          ),
-        ],
-        child: MaterialApp(
+      providers: [
+        ChangeNotifierProvider<ThemeProvider>(
+          create: (_) => ThemeProvider(),
+        ),
+      ],
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, _) {
+          return MaterialApp(
             title: 'Shuai Clock',
-            theme: ThemeData.dark(),
-            routes: Routes.getRoutesMap(context)));
+            theme: ThemeData.light().copyWith(
+              backgroundColor: themeProvider.theme
+            ),
+            routes: Routes.getRoutesMap(context),
+          );
+        },
+      ),
+    );
   }
 }

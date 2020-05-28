@@ -55,7 +55,7 @@ class HomeRoute extends StatelessWidget {
 
     final analogClockSimple = AnalogClock(
       decoration: BoxDecoration(
-          border: Border.all(width: 2.0, color: Colors.black),
+          border: Border.all(width: 2.ssp, color: Colors.black),
           color: Colors.transparent,
           shape: BoxShape.circle),
       isLive: true,
@@ -82,31 +82,36 @@ class HomeRoute extends StatelessWidget {
             },
           );
         },
-        child: Center(
-          child: Consumer<ThemeProvider>(builder: (context, themeProvider, _) {
-            Widget clock;
-            switch (themeProvider.clockTheme) {
-              case ClockTheme.TURN_PAGE:
-                clock = TurnPageClock();
-                break;
+        child: Container(
 
-              case ClockTheme.DIGITAL:
-                clock = digitalClock;
-                break;
+          color: Theme.of(context).backgroundColor,
+          child: Center(
+            child:
+                Consumer<ThemeProvider>(builder: (context, themeProvider, _) {
+              Widget clock;
+              switch (themeProvider.clockTheme) {
+                case ClockTheme.TURN_PAGE:
+                  clock = TurnPageClock();
+                  break;
 
-              case ClockTheme.ANALOG:
-                clock = analogClock;
-                break;
+                case ClockTheme.DIGITAL:
+                  clock = digitalClock;
+                  break;
 
-              case ClockTheme.ANALOG_SIMPLE:
-                clock = analogClockSimple;
-                break;
+                case ClockTheme.ANALOG:
+                  clock = analogClock;
+                  break;
 
-              default:
-                clock = digitalClock;
-            }
-            return clock;
-          }),
+                case ClockTheme.ANALOG_SIMPLE:
+                  clock = analogClockSimple;
+                  break;
+
+                default:
+                  clock = digitalClock;
+              }
+              return clock;
+            }),
+          ),
         ),
       ),
     );
