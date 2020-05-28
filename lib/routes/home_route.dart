@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shuaiclock/common/clock_theme.dart';
 import 'package:shuaiclock/common/providers.dart';
+import 'package:shuaiclock/widgets/bottom_menu.dart';
 import 'package:shuaiclock/widgets/clock/turnpage_clock.dart';
 import 'package:shuaiclock/widgets/menu.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
@@ -54,29 +55,41 @@ class HomeRoute extends StatelessWidget {
     );
 
     return Scaffold(
-        // appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
-        // drawer: Menu(),
-        body: Center(child:
-            Consumer<ThemeProvider>(builder: (context, themeProvider, _) {
-          Widget clock;
-          switch (themeProvider.clockTheme) {
-            case ClockTheme.TURN_PAGE:
-              clock = TurnPageClock();
-              break;
+      // appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
+      // drawer: Menu(),
+      body: GestureDetector(
+        onTap: () {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (context) {
+              return BottomMenu();
+            },
+          );
+        },
+        child: Center(
+          child: Consumer<ThemeProvider>(builder: (context, themeProvider, _) {
+            Widget clock;
+            switch (themeProvider.clockTheme) {
+              case ClockTheme.TURN_PAGE:
+                clock = TurnPageClock();
+                break;
 
-            case ClockTheme.DIGITAL:
-              clock = digitalClock;
-              break;
+              case ClockTheme.DIGITAL:
+                clock = digitalClock;
+                break;
 
-            case ClockTheme.ANALOG:
-              clock = analogClock;
-              break;
+              case ClockTheme.ANALOG:
+                clock = analogClock;
+                break;
 
-            default:
-              clock = digitalClock;
-          }
+              default:
+                clock = digitalClock;
+            }
 
-          return clock;
-        })));
+            return clock;
+          }),
+        ),
+      ),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shuaiclock/common/routes.dart';
 
+
 class Menu extends StatelessWidget {
   const Menu({
     Key key,
@@ -26,7 +27,6 @@ class Menu extends StatelessWidget {
                         Navigator.of(context).pushNamed(Routes.THEME_ROUTE),
                   ),
                   Divider(),
-                 
                 ],
               ),
             ),

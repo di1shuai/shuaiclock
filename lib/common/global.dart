@@ -30,6 +30,7 @@ class Global {
         print(e);
       }
     }
+
     print("===== init end ======");
   }
 
