@@ -36,8 +36,10 @@ jobs:
     - run: flutter build appbundle
 #    - run: flutter build ios --
     - name: Push AAB to Play Store
-      run: bundle exec fastlane beta
-      
+      uses: maierj/fastlane-action@v1.4.0
+      with:
+        lane: 'beta'
+        subdirectory: 'android'
     - name: Push APK to Releases
       uses: ncipollo/release-action@v1
       with:
