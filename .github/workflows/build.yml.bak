@@ -1,0 +1,48 @@
+name: build
+
+on:
+  create:
+    tags:
+    - '*'
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '11'
+    - uses: subosito/flutter-action@v1.3.2
+      with:
+        flutter-version: '1.19.0-1.0.pre'
+        channel: 'dev'
+    - name: enable desktop
+      run: |
+        flutter  config --enable-macos-desktop
+#        flutter  config --enable-linux-desktop
+#        flutter  config --enable-windows-desktop
+#        flutter  config --enable-web
+    - run: flutter pub get
+    - run: flutter doctor -v
+    - name: env init
+      run: |
+        sed -i "" "s/KEY_PASSWORD/${{ secrets.KEY_PASSWORD }}/g" android/key.properties
+        sed -i "" "s/STORE_PASSWORD/${{ secrets.STORE_PASSWORD }}/g" android/key.properties
+        echo "${{ secrets.PLAY_STORE_UPLOAD_KEY }}" | base64 --decode > android/key.jks
+    - run: flutter build apk
+    - run: flutter build macos --release
+#    - run: flutter build ios --
+    - name: Push APK to Releases
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/apk/release/*.apk,build/macos/Build/Products/Release/*.app"
+        token: ${{ secrets.TOKEN }}
+
+#     - name: Setup Go environment
+#       uses: actions/setup-go@v2.0.3
+#       with:
+#         go-version: 1.14.1
+#         stable: true 
+#     - run: go version
