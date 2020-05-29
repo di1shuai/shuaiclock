@@ -37,6 +37,7 @@ jobs:
 #    - run: flutter build ios --
     - name: Push AAB to Play Store
       run: bundle exec fastlane beta
+      
     - name: Push APK to Releases
       uses: ncipollo/release-action@v1
       with:
