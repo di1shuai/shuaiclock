@@ -20,11 +20,18 @@ const _clockThemes = <ClockTheme>[
   ClockTheme.ANALOG_SIMPLE
 ];
 
+const _clockThemeShow = <String>[
+  "assets/images/digital.jpg",
+  "assets/images/analog.jpg",
+  "assets/images/analog-simple.jpg",
+];
+
 class Global {
   static SharedPreferences _prefs;
   static Profile profile = Profile(themeIndex: 0, clockThemeIndex: 0);
   // 可选的主题列表
   static List<ClockTheme> get clockThemes => _clockThemes;
+  static List<String> get clockThemeShow => _clockThemeShow;
 
   static List<Color> get themes => _themes;
 

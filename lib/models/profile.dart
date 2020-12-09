@@ -52,4 +52,5 @@ class Profile {
 
   @override
   int get hashCode => themeIndex.hashCode ^ clockThemeIndex.hashCode;
+
 }
