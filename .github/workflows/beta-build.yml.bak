@@ -32,6 +32,7 @@ jobs:
         sed -i "" "s/STORE_PASSWORD/${{ secrets.STORE_PASSWORD }}/g" android/key.properties
         echo "${{ secrets.PLAY_STORE_UPLOAD_KEY }}" | base64 --decode > android/key.jks
         echo "${{ secrets.PLAY_JSON }}" | base64 --decode > android/play.json
+        sed -i "" "s/TOKEN/${{ secrets.TOKEN }}/g" ios/fastlane/Fastfile
     - run: flutter build apk
     - run: flutter build appbundle
 #    - run: flutter build ios --

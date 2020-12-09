@@ -48,3 +48,8 @@ app.*.map.json
 
 # go-flutter
 *.tmpl
+
+# ios
+
+*.ipa
+*.zip

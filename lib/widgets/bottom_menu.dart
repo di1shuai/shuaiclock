@@ -44,7 +44,7 @@ class BottomMenu extends StatelessWidget {
                           Provider.of<ThemeProvider>(context, listen: false)
                               .clockThemeIndex = index;
                         },
-                        child: Text(Global.clockThemes[index].toString()));
+                        child: Image.asset(Global.clockThemeShow[index].toString()));
                   }),
             ),
           ],
