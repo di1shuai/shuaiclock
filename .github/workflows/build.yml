@@ -31,7 +31,7 @@ jobs:
         - os: macos-latest
           target: macos
           path: build/macos/Build/Products/Release
-        - os: windows-latest
+        - os: windows-2019
           target: windows
           path: build\windows\runner\Release
         - os: ubuntu-latest
@@ -39,6 +39,9 @@ jobs:
           path: build/linux/release/bundle
         - os: ubuntu-latest
           target: apk
+          path: build/app/outputs/apk/release/
+        - os: ubuntu-latest
+          target: appbundle
           path: build/app/outputs/apk/release/
       # Disable fail-fast as we want results from all even if one fails.
       fail-fast: false
@@ -49,7 +52,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: 'flutter/flutter'
-        ref: 'master'
+        ref: 'dev'
         path: 'flutter'
         fetch-depth: 0
     - name: Add Flutter to the PATH for Linux and macOS
@@ -84,12 +87,36 @@ jobs:
     - name: Get packages for the Flutter project
       run: flutter pub get
       working-directory: code
-
+    - name: Env Init
+      run: |
+        echo "${{ secrets.SIGNING_KEY }}" | base64 --decode > android/app/${{secrets.KEY_PATH}}
+      working-directory: code
     # Build the application for desktop.
-    - name: Build project
+    - name: Build project Windows Linux and macOS
+      if: startsWith(matrix.os, 'macOS') || startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'windows')
       run: |
         flutter create .
         flutter build -v ${{ matrix.target }} --release
+      working-directory: code
+    - name: Build project apk
+      if: startsWith(matrix.target, 'apk')
+      run: |
+        flutter build -v ${{ matrix.target }} --obfuscate --split-per-abi --split-debug-info=./info --release
+      env:
+        KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        KEY_PATH: ${{ secrets.KEY_PATH }}
+      working-directory: code
+    - name: Build project appbundle
+      if: startsWith(matrix.target, 'appbundle')
+      run: |
+        flutter build -v ${{ matrix.target }} --obfuscate --split-debug-info=./info --release
+      env:
+        KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        KEY_PATH: ${{ secrets.KEY_PATH }}
       working-directory: code
     - name: Copy VC redistributables to release directory
       if: startsWith(matrix.target, 'windows')
